@@ -1,7 +1,9 @@
 import React from "react";
 
+import "./style.less";
+
 const Timeline = () => {
-  return <div>timeline</div>;
+  return <div className="timeline" />;
 };
 
 export default Timeline;

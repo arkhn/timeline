@@ -1,0 +1,22 @@
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/core/lib/less/variables";
+
+.document-browser {
+  flex-basis: 50%;
+  background-color: @light-gray5;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & > *:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  .documents {
+    flex-grow: 1;
+    background-color: @light-gray4;
+    border-radius: 3px;
+  }
+}
