@@ -3,20 +3,14 @@
 
 .document-browser {
   flex-basis: 50%;
-  background-color: @light-gray5;
+  background-color: @light-gray3;
   padding: 20px;
+
+  background-image: linear-gradient(@gray3 33%, rgba(255, 255, 255, 0) 0%);
+  background-position: right;
+  background-size: 1px 4px;
+  background-repeat: repeat-y;
 
   display: flex;
   flex-direction: column;
-
-  .document {
-    padding: 10px 20px;
-    background-color: @light-gray4;
-    border: 1px solid @light-gray1;
-    border-radius: 5px;
-
-    &:not(:last-child) {
-      margin-bottom: 10px;
-    }
-  }
 }
