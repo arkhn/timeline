@@ -1,4 +1,4 @@
-import { Alignment, Navbar as BPNavbar } from "@blueprintjs/core";
+import { Alignment, Button, Icon, Navbar as BPNavbar } from "@blueprintjs/core";
 import * as React from "react";
 import useReactRouter from "use-react-router";
 
@@ -21,6 +21,19 @@ const Navbar = () => {
           <span dangerouslySetInnerHTML={{ __html: arkhnLogoWhite }} />
           <h2>TIMELINE</h2>
         </BPNavbar.Heading>
+
+        <BPNavbar.Divider />
+
+        <Icon icon="person" />
+        <div>Stéphane Mallarmé</div>
+      </BPNavbar.Group>
+
+      <BPNavbar.Group align={Alignment.RIGHT}>
+        <Icon icon="user" />
+        <div>Jean-Martin Charcot</div>
+        <BPNavbar.Divider />
+        <Button icon="more" minimal />
+        <Button icon="log-out" minimal />
       </BPNavbar.Group>
     </BPNavbar>
   );
