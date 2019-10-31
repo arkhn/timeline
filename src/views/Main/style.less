@@ -9,6 +9,25 @@
   #query-container {
     background-color: @light-gray5;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > *:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    #search-bar {
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    #filters {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      min-width: 300px;
+    }
   }
 
   #result-container {
