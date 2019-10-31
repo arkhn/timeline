@@ -8,7 +8,7 @@ import Timeline from "./Timeline";
 import "./style.less";
 
 const MainView = () => {
-  const [query, setQuery] = useState("");
+  let [query, setQuery] = useState("");
 
   return (
     <>
