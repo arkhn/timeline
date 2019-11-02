@@ -14,35 +14,35 @@ import { setEvents } from "src/services/events";
 
 const mockEvents: IEvent[] = [
   {
-    start: "2019-01-10 06:00",
-    text: "Fracture des cheveux",
-    textDisabled: false,
-    icon: "/src/assets/img/arkhn_logo_only_white.svg",
+    start: "2017-01-10 06:00",
+    title: "Fracture des cheveux",
     type: "Diagnostic"
   },
   {
-    start: "2019-01-10 13:00",
-    end: "2019-01-10 14:00",
-    text: "Entorse de l'oreille gauche",
-    textDisabled: false,
-    icon: "/src/assets/img/arkhn_logo_only_white.svg",
-    type: "Diagnostic"
-  },
-  {
-    start: "2019-01-10 23:00",
-    end: "2019-01-11 00:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg",
-    text: "Deux jours de repos",
-    textDisabled: false,
+    start: "2017-01-10 08:00",
+    title: "Une infusion de camomille",
     type: "Prescription"
   },
   {
-    start: "2019-01-11 00:00",
-    end: "2019-01-11 01:00",
-    text: "Double croisement des doigts de pieds",
-    textDisabled: false,
-    icon: "/src/assets/img/arkhn_logo_only_white.svg",
+    start: "2019-01-10 13:00",
+    title: "Entorse de l'oreille gauche",
     type: "Diagnostic"
+  },
+  {
+    start: "2019-01-10 15:00",
+    end: "2019-01-12 15:00",
+    title: "Deux jours de repos",
+    type: "Prescription"
+  },
+  {
+    start: "2019-01-14 00:00",
+    title: "Double croisement des doigts de pieds",
+    type: "Diagnostic"
+  },
+  {
+    start: "2019-01-14 15:00",
+    title: "Un peu de tisane",
+    type: "Prescription"
   }
 ];
 

@@ -16,7 +16,7 @@ const EventBrowser = () => {
         <Event
           key={index}
           index={index}
-          title={event.text}
+          title={event.title}
           type={event.type}
           date={event.start}
           description={event.description}

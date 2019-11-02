@@ -5,11 +5,9 @@ export interface IReduxStore {
 }
 
 export interface IEvent {
+  title?: string;
   type: string;
   start: string;
   end?: string;
-  text?: string;
-  textDisabled?: boolean;
-  icon?: string;
   description?: string;
 }

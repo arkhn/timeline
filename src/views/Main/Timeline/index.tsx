@@ -17,6 +17,9 @@ am4core.useTheme(am4themes_animated);
 
 interface ITimelineEvent extends IEvent {
   color?: string;
+  textDisabled?: boolean;
+  icon?: string;
+  opacity?: number;
 }
 
 const Timeline = () => {
@@ -29,16 +32,21 @@ const Timeline = () => {
   let [parsedEvents, setParsedEvents] = useState([]);
 
   useEffect(() => {
-    const pe = events.map((event: IEvent, index: number) => {
-      return {
-        ...event,
-        color:
-          selectedEvents.length > 0 && selectedEvents.indexOf(index) == -1
-            ? Colors.GRAY4
-            : Colors.DARK_GRAY1,
-        end: event.end ? event.end : event.start
-      };
-    });
+    const pe = events.map(
+      (event: IEvent, index: number): ITimelineEvent => {
+        const notSelected =
+          selectedEvents.length > 0 && selectedEvents.indexOf(index) == -1;
+
+        return {
+          ...event,
+          color: notSelected ? Colors.GRAY2 : Colors.DARK_GRAY1,
+          opacity: notSelected ? 0.3 : 0.8,
+          end: event.end ? event.end : event.start,
+          icon: "/src/assets/img/arkhn_logo_only_white.svg",
+          textDisabled: event.title ? false : true
+        };
+      }
+    );
 
     setParsedEvents(pe);
   }, [events, selectedEvents]);
@@ -59,7 +67,7 @@ const Timeline = () => {
       chart.data = parsedEvents;
 
       chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
-      chart.dateFormatter.dateFormat = "HH";
+      chart.dateFormatter.dateFormat = "MM-dd HH";
 
       chart.fontSize = 12;
       chart.tooltipContainer.fontSize = 12;
@@ -76,14 +84,18 @@ const Timeline = () => {
       dateAxis.renderer.tooltipLocation = 0;
       dateAxis.renderer.line.strokeDasharray = "1,4";
       dateAxis.renderer.line.strokeOpacity = 0.5;
-      dateAxis.tooltip.background.fillOpacity = 0.2;
+      dateAxis.tooltip.background.fillOpacity = 0.5;
       dateAxis.tooltip.background.cornerRadius = 5;
       dateAxis.tooltip.label.fill = new am4core.InterfaceColorSet().getFor(
         "alternativeBackground"
       );
       dateAxis.tooltip.label.paddingTop = 7;
-      dateAxis.endLocation = 0;
-      dateAxis.startLocation = -0.5;
+      dateAxis.extraMax = 0.02;
+      dateAxis.extraMin = 0.02;
+      dateAxis.max = Date.now();
+      dateAxis.strictMinMax = true;
+      // dateAxis.endLocation = 0;
+      // dateAxis.startLocation = 0;
 
       let labelTemplate = dateAxis.renderer.labels.template;
       labelTemplate.verticalCenter = "middle";
@@ -108,20 +120,19 @@ const Timeline = () => {
       series.columns.template.strokeOpacity = 0;
       series.columns.template.fillOpacity = 0.6;
 
-      let imageBullet1 = series.bullets.push(
-        new am4plugins_bullets.PinBullet()
-      );
-      imageBullet1.locationX = 1;
-      imageBullet1.propertyFields.stroke = "color";
-      imageBullet1.background.propertyFields.fill = "color";
-      imageBullet1.image = new am4core.Image();
-      imageBullet1.image.propertyFields.href = "icon";
-      imageBullet1.image.scale = 0.3;
-      imageBullet1.circle.radius = am4core.percent(100);
-      imageBullet1.dy = -5;
+      let imageBullet = series.bullets.push(new am4plugins_bullets.PinBullet());
+      imageBullet.locationX = 1;
+      imageBullet.propertyFields.stroke = "color";
+      imageBullet.background.propertyFields.fill = "color";
+      imageBullet.image = new am4core.Image();
+      imageBullet.image.propertyFields.href = "icon";
+      imageBullet.image.scale = 0.3;
+      imageBullet.propertyFields.opacity = "opacity";
+      imageBullet.circle.radius = am4core.percent(100);
+      imageBullet.dy = -5;
 
       let textBullet = series.bullets.push(new am4charts.LabelBullet());
-      textBullet.label.propertyFields.text = "text";
+      textBullet.label.propertyFields.text = "title";
       textBullet.disabled = true;
       textBullet.propertyFields.disabled = "textDisabled";
       textBullet.label.strokeOpacity = 0;
@@ -132,7 +143,7 @@ const Timeline = () => {
       chart.scrollbarX = new am4core.Scrollbar();
       chart.scrollbarX.align = "center";
       chart.scrollbarX.width = am4core.percent(75);
-      chart.scrollbarX.opacity = 0.5;
+      chart.scrollbarX.opacity = 1;
 
       let cursor = new am4plugins_timeline.CurveCursor();
       chart.cursor = cursor;
@@ -143,7 +154,7 @@ const Timeline = () => {
       cursor.lineX.strokeOpacity = 1;
 
       dateAxis.renderer.tooltipLocation2 = 0;
-      categoryAxis.cursorTooltipEnabled = true;
+      categoryAxis.cursorTooltipEnabled = false;
 
       setChart(chart);
     } else {
