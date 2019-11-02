@@ -9,12 +9,12 @@ interface IProps {
   description: string;
 }
 
-const Document = ({ title, type, date, description }: IProps) => {
+const Event = ({ title, type, date, description }: IProps) => {
   const [selected, setSelected] = useState(false);
 
   return (
     <div
-      className={`document ${selected ? "selected" : ""}`}
+      className={`event ${selected ? "selected" : ""}`}
       onClick={() => setSelected(!selected)}
     >
       <div className="tags">
@@ -27,4 +27,4 @@ const Document = ({ title, type, date, description }: IProps) => {
   );
 };
 
-export default Document;
+export default Event;

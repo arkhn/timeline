@@ -13,112 +13,11 @@ import "./style.less";
 am4core.useTheme(am4themes_dataviz);
 am4core.useTheme(am4themes_animated);
 
-const mockData = [
-  {
-    category: "",
-    start: "2019-01-10 06:00",
-    end: "2019-01-10 07:00",
-    text: "Fracture des cheveux",
-    textDisabled: false,
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 07:00",
-    end: "2019-01-10 08:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 08:00",
-    end: "2019-01-10 09:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 09:00",
-    end: "2019-01-10 10:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 10:00",
-    end: "2019-01-10 12:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 12:00",
-    end: "2019-01-10 13:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 13:00",
-    end: "2019-01-10 14:00",
-    text: "Entorse de l'oreille gauche",
-    textDisabled: false,
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 14:00",
-    end: "2019-01-10 16:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 16:00",
-    end: "2019-01-10 17:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 17:00",
-    end: "2019-01-10 20:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 20:00",
-    end: "2019-01-10 20:30",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 20:30",
-    end: "2019-01-10 21:30",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 21:30",
-    end: "2019-01-10 22:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 22:00",
-    end: "2019-01-10 23:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-10 23:00",
-    end: "2019-01-11 00:00",
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  },
-  {
-    category: "",
-    start: "2019-01-11 00:00",
-    end: "2019-01-11 01:00",
-    text: "Double croisement des doigts de pieds",
-    textDisabled: false,
-    icon: "/src/assets/img/arkhn_logo_only_white.svg"
-  }
-];
+interface IProps {
+  events: any;
+}
 
-const Timeline = () => {
+const Timeline = ({ events }: IProps) => {
   let [chart, setChart] = useState();
   let [colorSet, setColorSet] = useState();
 
@@ -133,7 +32,7 @@ const Timeline = () => {
     chart.yAxisInnerRadius = am4core.percent(2);
     chart.maskBullets = false;
 
-    chart.data = mockData;
+    chart.data = events;
 
     chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
     chart.dateFormatter.dateFormat = "HH";
@@ -219,7 +118,7 @@ const Timeline = () => {
     categoryAxis.cursorTooltipEnabled = true;
 
     setChart(chart);
-  }, [setChart]);
+  }, [events, setChart]);
 
   return (
     <div className="timeline">
