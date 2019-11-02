@@ -27,9 +27,10 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Reducers
+import { eventsReducer } from "src/services/events";
 
 const mainReducer = combineReducers({
-  // reducers
+  events: eventsReducer
 });
 
 // Store

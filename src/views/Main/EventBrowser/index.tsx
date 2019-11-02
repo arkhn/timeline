@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 
 import Event from "./Event";
 
 import "./style.less";
-import { IEvent } from "src/types";
+import { IEvent, IReduxStore } from "src/types";
+import { toggleEvent } from "src/services/events";
 
-interface IDocument {
-  title: string;
-  type: string;
-  date: string;
-  description: string;
-}
+const EventBrowser = () => {
+  const events = useSelector((state: IReduxStore) => state.events.events);
 
-interface IProps {
-  events: any;
-}
-
-const EventBrowser = ({ events }: IProps) => {
   return (
     <div className="document-browser">
       {events.map((event: IEvent, index: number) => (
         <Event
           key={index}
+          index={index}
           title={event.text}
           type={event.type}
           date={event.start}
