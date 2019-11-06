@@ -79,24 +79,23 @@ const Timeline = () => {
 
       let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
       dateAxis.renderer.minGridDistance = 70;
-      dateAxis.baseInterval = { count: 30, timeUnit: "minute" };
+      dateAxis.baseInterval = { count: 1, timeUnit: "hour" };
       dateAxis.renderer.tooltipLocation = 0;
       dateAxis.renderer.line.strokeDasharray = "1,4";
       dateAxis.renderer.line.strokeOpacity = 0.5;
-      dateAxis.tooltip.background.fillOpacity = 0.5;
-      dateAxis.tooltip.background.cornerRadius = 5;
-      dateAxis.tooltip.label.fill = new am4core.InterfaceColorSet().getFor(
-        "alternativeBackground"
-      );
+
+      dateAxis.tooltip.background.cornerRadius = 2;
+      dateAxis.tooltipDateFormat = "MMM dd";
+      dateAxis.tooltip.background.fill = am4core.color(Colors.DARK_GRAY5);
+      dateAxis.tooltip.background.strokeWidth = 0;
       dateAxis.tooltip.label.paddingTop = 7;
+
       dateAxis.extraMax = 0.01;
       dateAxis.extraMin = 0.01;
       dateAxis.max = Date.now();
       dateAxis.keepSelection = true;
       dateAxis.start = 0;
       dateAxis.end = 1;
-      dateAxis.endLocation = 0;
-      dateAxis.startLocation = -0.5;
 
       let labelTemplate = dateAxis.renderer.labels.template;
       labelTemplate.verticalCenter = "middle";
