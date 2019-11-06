@@ -24,12 +24,11 @@ interface ITimelineEvent extends IEvent {
 
 const Timeline = () => {
   const [chart, setChart] = useState();
+  const [parsedEvents, setParsedEvents] = useState([]);
   const events = useSelector((state: IReduxStore) => state.events.events);
   const selectedEvents = useSelector(
     (state: IReduxStore) => state.events.selectedEvents
   );
-
-  let [parsedEvents, setParsedEvents] = useState([]);
 
   useEffect(() => {
     const pe = events.map(
@@ -90,12 +89,14 @@ const Timeline = () => {
         "alternativeBackground"
       );
       dateAxis.tooltip.label.paddingTop = 7;
-      dateAxis.extraMax = 0.02;
-      dateAxis.extraMin = 0.02;
+      dateAxis.extraMax = 0.01;
+      dateAxis.extraMin = 0.01;
       dateAxis.max = Date.now();
-      dateAxis.strictMinMax = true;
-      // dateAxis.endLocation = 0;
-      // dateAxis.startLocation = 0;
+      dateAxis.keepSelection = true;
+      dateAxis.start = 0;
+      dateAxis.end = 1;
+      dateAxis.endLocation = 0;
+      dateAxis.startLocation = -0.5;
 
       let labelTemplate = dateAxis.renderer.labels.template;
       labelTemplate.verticalCenter = "middle";
@@ -144,6 +145,8 @@ const Timeline = () => {
       chart.scrollbarX.align = "center";
       chart.scrollbarX.width = am4core.percent(75);
       chart.scrollbarX.opacity = 1;
+      chart.scrollbarX.start = 0;
+      chart.scrollbarX.end = 1;
 
       let cursor = new am4plugins_timeline.CurveCursor();
       chart.cursor = cursor;
@@ -159,7 +162,6 @@ const Timeline = () => {
       setChart(chart);
     } else {
       chart.data = parsedEvents;
-      setChart(chart);
     }
   }, [parsedEvents]);
 
