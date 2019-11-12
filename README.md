@@ -14,13 +14,7 @@ yarn install
 ## Start dev environment
 
 ```
-yarn run dev
-```
-
-## Run tests
-
-```
-yarn run test
+yarn start
 ```
 
 ## Start contributing
