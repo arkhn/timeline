@@ -69,7 +69,7 @@ const MultiSelect = () => {
   };
 
   const getTagProps = (_value: string, index: number): ITagProps => ({
-    intent: Intent.SUCCESS
+    // intent: Intent.SUCCESS
     // minimal: true,
   });
 

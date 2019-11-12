@@ -5,6 +5,7 @@ import { IReduxStore } from "src/types";
 import { toggleEvent } from "src/services/events";
 
 import "./style.less";
+import { typeToColor } from "src/services/typeParser";
 
 interface IProps {
   index: number;
@@ -28,7 +29,9 @@ const Event = ({ index, title, type, date, description }: IProps) => {
       onClick={() => dispatch(toggleEvent(index))}
     >
       <div className="tags">
-        <div className="tag">{type}</div>
+        <div className="tag" style={{ backgroundColor: typeToColor(type) }}>
+          {type}
+        </div>
         <div className="tag">{date}</div>
       </div>
       <div className="title">{title}</div>

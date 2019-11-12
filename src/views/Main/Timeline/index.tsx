@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import "./style.less";
 
 import { IEvent, IReduxStore } from "src/types";
+import { typeToColor, typeToIcon } from "src/services/typeParser";
 
 am4core.useTheme(am4themes_dataviz);
 am4core.useTheme(am4themes_animated);
@@ -38,10 +39,10 @@ const Timeline = () => {
 
         return {
           ...event,
-          color: notSelected ? Colors.GRAY2 : Colors.DARK_GRAY1,
-          opacity: notSelected ? 0.3 : 0.8,
+          color: typeToColor(event.type),
+          opacity: notSelected ? 0.2 : selectedEvents.length === 0 ? 0.6 : 0.8,
           end: event.end ? event.end : event.start,
-          icon: "/src/assets/img/arkhn_logo_only_white.svg",
+          icon: typeToIcon(event.type),
           textDisabled: event.title ? false : true
         };
       }
@@ -74,13 +75,13 @@ const Timeline = () => {
       let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
       categoryAxis.dataFields.category = "type";
       categoryAxis.renderer.grid.template.disabled = true;
-      categoryAxis.renderer.labels.template.paddingRight = 25;
-      categoryAxis.renderer.minGridDistance = 10;
+      // categoryAxis.renderer.labels.template.paddingRight = 25;
+      // categoryAxis.renderer.minGridDistance = 10;
 
       let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-      dateAxis.renderer.minGridDistance = 70;
+      // dateAxis.renderer.minGridDistance = 70;
       dateAxis.baseInterval = { count: 1, timeUnit: "hour" };
-      dateAxis.renderer.tooltipLocation = 0;
+      // dateAxis.renderer.tooltipLocation = 0;
       dateAxis.renderer.line.strokeDasharray = "1,4";
       dateAxis.renderer.line.strokeOpacity = 0.5;
 
@@ -99,11 +100,11 @@ const Timeline = () => {
 
       let labelTemplate = dateAxis.renderer.labels.template;
       labelTemplate.verticalCenter = "middle";
-      labelTemplate.fillOpacity = 0.4;
+      // labelTemplate.fillOpacity = 0.4;
       labelTemplate.background.fill = new am4core.InterfaceColorSet().getFor(
         "background"
       );
-      labelTemplate.background.fillOpacity = 1;
+      // labelTemplate.background.fillOpacity = 1;
       labelTemplate.padding(7, 7, 7, 7);
 
       let series = chart.series.push(
@@ -155,7 +156,7 @@ const Timeline = () => {
       cursor.lineX.strokeDasharray = "1,4";
       cursor.lineX.strokeOpacity = 1;
 
-      dateAxis.renderer.tooltipLocation2 = 0;
+      // dateAxis.renderer.tooltipLocation2 = 0;
       categoryAxis.cursorTooltipEnabled = false;
 
       setChart(chart);
