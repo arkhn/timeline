@@ -1,0 +1,23 @@
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/core/lib/less/variables";
+
+@window-padding: 20px;
+@border-radius: 6px;
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#application-wrapper {
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  & > *:not(#navbar) {
+    flex-grow: 1;
+  }
+}

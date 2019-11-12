@@ -1,0 +1,60 @@
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/core/lib/less/variables";
+
+.event {
+  padding: 10px 20px;
+  background-color: @light-gray5;
+  border-bottom: 1px solid @light-gray1;
+  border-right: 1px solid @light-gray2;
+  border-left: 7px solid transparent;
+  border-radius: 5px;
+  position: relative;
+
+  &:hover {
+    background-color: @light-gray2;
+    border-bottom: 1px solid @gray5;
+    border-right: 1px solid @light-gray1;
+    border-left: 7px solid @gray4;
+    cursor: pointer;
+  }
+
+  &.selected {
+    border-left: 7px solid @gray2;
+  }
+
+  .title {
+    color: @dark-gray3;
+    font-size: 18px;
+  }
+
+  .description {
+    color: @dark-gray5;
+    font-size: 15px;
+  }
+
+  .tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+
+    position: absolute;
+    top: -7px;
+    right: 10px;
+
+    .tag {
+      color: @white;
+      font-size: 12px;
+      background-color: @gray3;
+      border-radius: 3px;
+      padding: 2px 6px;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
